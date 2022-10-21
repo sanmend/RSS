@@ -1,4 +1,9 @@
 # demo-rss
+###
+RSS阅读器,纯前端,本地储存,rss源很多会导致浏览器跨域请求不到,浏览器源跨域需要proxy代理,两天写的时间比较紧,样式很乱,js冗余高,没有做优化,本地测试良好,xml中item转数组在utils的ready.js里面.
+
+### 本地代理问题
+本地初始化有"少数派"一个源,添加源只能添加https://www.freebuf.com/feed,https://www.freebuf.com/feed,https://sspai.com/feed三个,因为这三个我做了proxy代理,其他的没做,可以看一下我的vue.config,其他的解决跨域的方法还没想到,因为修改vue.config的proxy需要重启项目才有效,所以做的系统添加源实现proxy代理联动我想不到了.
 
 ## Project setup
 ```
@@ -15,5 +20,3 @@ npm run serve
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

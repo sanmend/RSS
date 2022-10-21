@@ -1,12 +1,22 @@
-import axios from "axios"
-export const getData=async ()=>{
-  let {data:res}=await axios({
-    method: "get",
-    url: "https://sspai.com/feed",
-  })
-  console.log(res.toString());
-  console.log(typeof res);
-  var substr2 = res.match(/\<channel\>(\S*)\<\/channel\>/);
-  console.log("substr2");
-  console.log(substr2);
-}
+export const changeData =  (data) => {
+  try{
+    var tmp = new DOMParser();
+    let xml = tmp.parseFromString(data, "text/html"); //解析xml时为text/xml
+    let dataList = xml.querySelectorAll("item");
+  
+    dataList = Array.prototype.map.call(dataList, (item) => {
+      return {
+        title: item?.querySelector("title")?.innerText,
+        link: item?.querySelector("link")?.nextSibling.data,
+        description: item?.querySelector("description")?.innerText,
+        author: item?.querySelector("author")?.innerText,
+        pubdate: item?.querySelector("pubdate")?.innerText,
+      };
+    });
+    return dataList;
+  }catch(err){
+    console.log(err);
+      return false
+  }
+  
+};
